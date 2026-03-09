@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Retenção de Alunos 26.1</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2d5f9e;
+      --accent: #e74c3c;
+      --accent2: #27ae60;
+      --accent3: #f39c12;
+      --accent4: #8e44ad;
+      --bg: #f0f4f8;
+      --card: #ffffff;
+      --text: #1a202c;
+      --text-muted: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      padding: 28px 40px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    header .header-left h1 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    header .header-left p {
+      font-size: 0.9rem;
+      opacity: 0.82;
+      margin-top: 4px;
+    }
+    header .badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 30px;
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* ── FILTROS ── */
+    .filters {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filters label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
+    .filters select {
+      padding: 7px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      background: var(--bg);
+      cursor: pointer;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .filters select:focus { outline: none; border-color: var(--primary-light); }
+    .filters .filter-group { display: flex; align-items: center; gap: 8px; }
+    .btn-reset {
+      padding: 7px 18px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-reset:hover { background: var(--primary-light); }
+
+    /* ── MAIN ── */
+    main { padding: 32px 40px; max-width: 1600px; margin: 0 auto; }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+    .kpi-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--primary);
+      transition: transform 0.18s;
+    }
+    .kpi-card:hover { transform: translateY(-3px); }
+    .kpi-card.danger { border-left-color: var(--accent); }
+    .kpi-card.success { border-left-color: var(--accent2); }
+    .kpi-card.warning { border-left-color: var(--accent3); }
+    .kpi-card.purple { border-left-color: var(--accent4); }
+    .kpi-card .kpi-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .kpi-card .kpi-value {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--primary);
+    }
+    .kpi-card.danger .kpi-value { color: var(--accent); }
+    .kpi-card.success .kpi-value { color: var(--accent2); }
+    .kpi-card.warning .kpi-value { color: var(--accent3); }
+    .kpi-card.purple .kpi-value { color: var(--accent4); }
+    .kpi-card .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ── CHART GRID ── */
+    .chart-grid {
+      display: grid;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .grid-full { grid-template-columns: 1fr; }
+
+    .chart-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .chart-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chart-card h3 .icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+    .chart-card .chart-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    /* ── TABELA ── */
+    .table-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+    }
+    .table-section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .table-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-input {
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      width: 260px;
+      background: var(--bg);
+    }
+    .search-input:focus { outline: none; border-color: var(--primary-light); }
+    .table-info { font-size: 0.82rem; color: var(--text-muted); margin-left: auto; }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    thead th {
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    thead th:hover { background: var(--primary-light); }
+    thead th .sort-icon { margin-left: 4px; opacity: 0.6; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
+    tbody tr:hover { background: #f7faff; }
+    tbody td { padding: 10px 14px; vertical-align: middle; }
+
+    .badge-resultado {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-resultado.desistencia { background: #fde8e8; color: #c0392b; }
+    .badge-resultado.retido { background: #d4efdf; color: #1e8449; }
+
+    .badge-situacao {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-situacao.finalizado { background: #d4efdf; color: #1e8449; }
+    .badge-situacao.em-processo { background: #fef9e7; color: #d68910; }
+
+    .badge-motivo {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .page-btn {
+      padding: 6px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      background: var(--bg);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .page-btn:hover, .page-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 20px 20px; }
+      main { padding: 20px 16px; }
+      .filters { padding: 12px 16px; }
+      .kpi-card .kpi-value { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>📊 Dashboard — Retenção de Alunos 26.1</h1>
+    <p>Monitoramento de solicitações de desistência e retenção · Demais Cursos &amp; EAD</p>
+  </div>
+  <span class="badge">Semestre 26.1</span>
+</header>
+
+<!-- FILTROS -->
+<div class="filters">
+  <div class="filter-group">
+    <label for="filtro-campus">Campus</label>
+    <select id="filtro-campus">
+      <option value="">Todos</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="filtro-resultado">Resultado</label>
+    <select id="filtro-resultado">
+      <option value="">Todos</option>
+      <option value="DESISTÊNCIA">Desistência</option>
+      <option value="RETIDO">Retido</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="filtro-motivo">Motivo</label>
+    <select id="filtro-motivo">
+      <option value="">Todos</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="filtro-modalidade">Modalidade</label>
+    <select id="filtro-modalidade">
+      <option value="">Todas</option>
+      <option value="Presencial">Presencial</option>
+      <option value="EAD">EAD</option>
+    </select>
+  </div>
+  <button class="btn-reset" onclick="resetFiltros()">↺ Limpar Filtros</button>
+</div>
+
+<main>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" id="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Total de Alunos</div>
+      <div class="kpi-value" id="kpi-total">—</div>
+      <div class="kpi-sub">Solicitações registradas</div>
+    </div>
+    <div class="kpi-card danger">
+      <div class="kpi-label">Desistências</div>
+      <div class="kpi-value" id="kpi-desist">—</div>
+      <div class="kpi-sub" id="kpi-desist-pct">—% do total</div>
+    </div>
+    <div class="kpi-card success">
+      <div class="kpi-label">Retidos</div>
+      <div class="kpi-value" id="kpi-retido">—</div>
+      <div class="kpi-sub" id="kpi-retido-pct">—% do total</div>
+    </div>
+    <div class="kpi-card warning">
+      <div class="kpi-label">Em Processo</div>
+      <div class="kpi-value" id="kpi-processo">—</div>
+      <div class="kpi-sub">Aguardando resolução</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Finalizados</div>
+      <div class="kpi-value" id="kpi-finalizado">—</div>
+      <div class="kpi-sub">Casos encerrados</div>
+    </div>
+  </div>
+
+  <!-- ROW 1: Resultado Geral + Motivos -->
+  <div class="chart-grid grid-2">
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#e8f0fe">🎯</span> Resultado Geral</h3>
+      <div class="chart-wrap" style="height:280px">
+        <canvas id="chart-resultado"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#fef3e2">📋</span> Distribuição por Motivo</h3>
+      <div class="chart-wrap" style="height:280px">
+        <canvas id="chart-motivos"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Campus + Modalidade -->
+  <div class="chart-grid grid-2">
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#e8f5e9">🏫</span> Resultado por Campus</h3>
+      <div class="chart-wrap" style="height:300px">
+        <canvas id="chart-campus"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#f3e5f5">💻</span> Resultado por Modalidade</h3>
+      <div class="chart-wrap" style="height:300px">
+        <canvas id="chart-modalidade"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Evolução temporal -->
+  <div class="chart-grid grid-full">
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#e3f2fd">📅</span> Evolução de Solicitações por Mês</h3>
+      <div class="chart-wrap" style="height:280px">
+        <canvas id="chart-mes"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 4: Motivo por resultado + Cursos -->
+  <div class="chart-grid grid-2">
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#fce4ec">🔍</span> Motivo × Resultado</h3>
+      <div class="chart-wrap" style="height:320px">
+        <canvas id="chart-motivo-resultado"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3><span class="icon" style="background:#fff3e0">🎓</span> Top Cursos com Desistências</h3>
+      <div class="chart-wrap" style="height:320px">
+        <canvas id="chart-cursos"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABELA -->
+  <div class="table-section">
+    <h3><span class="icon" style="background:#e8f0fe">📄</span> Detalhamento dos Alunos</h3>
+    <div class="table-controls">
+      <input type="text" class="search-input" id="table-search" placeholder="🔍  Pesquisar por nome, curso, campus..." oninput="filterTable()" />
+      <span class="table-info" id="table-info"></span>
+    </div>
+    <div class="table-wrap">
+      <table id="main-table">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">Nome <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(1)">Campus <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(2)">Curso <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(3)">Modalidade <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(4)">Resultado <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(5)">Motivo <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(6)">Situação <span class="sort-icon">⇅</span></th>
+            <th onclick="sortTable(7)">Data Solicitação <span class="sort-icon">⇅</span></th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+</main>
+
+<footer>
+  Dashboard de Retenção de Alunos 26.1 · Dados extraídos da planilha RETENÇÃODEMAISCURSOSEEAD26.1 · Gerado automaticamente
+</footer>
+
+<script>
+// ── DADOS EMBUTIDOS ──
+const RAW_DATA = {"kpis": {"total": 126, "retidos": 17, "desistencias": 109, "taxa_retencao": 13.5, "taxa_desistencia": 86.5, "em_processo": 76, "finalizados": 50}, "resultado_campus": [{"CAMPUS": "ALFENAS", "DESISTÊNCIA": 83, "RETIDO": 14}, {"CAMPUS": "BH", "DESISTÊNCIA": 9, "RETIDO": 1}, {"CAMPUS": "CAMPO BELO", "DESISTÊNCIA": 1, "RETIDO": 0}, {"CAMPUS": "DIVINOPOLIS", "DESISTÊNCIA": 12, "RETIDO": 2}, {"CAMPUS": "VARGINHA", "DESISTÊNCIA": 4, "RETIDO": 0}], "motivos": [{"motivo": "TRANSFERÊNCIA", "total": 34}, {"motivo": "FINANCEIRO", "total": 31}, {"motivo": "PESSOAL", "total": 20}, {"motivo": "OUTROS", "total": 19}, {"motivo": "SEM CONTATO", "total": 15}, {"motivo": "ACADÊMICO", "total": 4}, {"motivo": "NÃO INFORMADO", "total": 3}], "motivo_resultado": [{"MOTIVO": "ACADÊMICO", "DESISTÊNCIA": 2, "RETIDO": 2}, {"MOTIVO": "FINANCEIRO", "DESISTÊNCIA": 31, "RETIDO": 0}, {"MOTIVO": "NÃO INFORMADO", "DESISTÊNCIA": 3, "RETIDO": 0}, {"MOTIVO": "OUTROS", "DESISTÊNCIA": 13, "RETIDO": 6}, {"MOTIVO": "PESSOAL", "DESISTÊNCIA": 20, "RETIDO": 0}, {"MOTIVO": "SEM CONTATO", "DESISTÊNCIA": 15, "RETIDO": 0}, {"MOTIVO": "TRANSFERÊNCIA", "DESISTÊNCIA": 25, "RETIDO": 9}], "cursos_desistencias": [{"curso": "DIREITO", "desistencias": 11}, {"curso": "PSICOLOGIA", "desistencias": 10}, {"curso": "FISIOTERAPIA", "desistencias": 8}, {"curso": "BIOMEDICINA", "desistencias": 7}, {"curso": "FARMÁCIA", "desistencias": 7}, {"curso": "AGRONOMIA", "desistencias": 6}, {"curso": "ADMINISTRAÇÃO", "desistencias": 6}, {"curso": "ODONTOLOGIA", "desistencias": 4}, {"curso": "MEDICINA VETERINÁRIA", "desistencias": 4}, {"curso": "ENFERMAGEM", "desistencias": 4}, {"curso": "CIÊNCIAS DA COMPUTAÇÃO", "desistencias": 4}, {"curso": "ADMINISTRAÇÃO EAD", "desistencias": 4}], "solicitacoes_mes": [{"MES_ANO": "2025-12", "MES_LABEL": "Dec/2025", "DESISTÊNCIA": 6.0, "RETIDO": 3.0}, {"MES_ANO": "2026-01", "MES_LABEL": "Jan/2026", "DESISTÊNCIA": 20.0, "RETIDO": 3.0}, {"MES_ANO": "2026-02", "MES_LABEL": "Feb/2026", "DESISTÊNCIA": 70.0, "RETIDO": 10.0}, {"MES_ANO": "2026-03", "MES_LABEL": "Mar/2026", "DESISTÊNCIA": 13.0, "RETIDO": 1.0}], "modalidade": [{"MODALIDADE": "EAD", "RESULTADO": "DESISTÊNCIA", "count": 22}, {"MODALIDADE": "EAD", "RESULTADO": "RETIDO", "count": 3}, {"MODALIDADE": "Presencial", "RESULTADO": "DESISTÊNCIA", "count": 87}, {"MODALIDADE": "Presencial", "RESULTADO": "RETIDO", "count": 14}], "modalidade_resultado": [{"MODALIDADE": "EAD", "DESISTÊNCIA": 22, "RETIDO": 3}, {"MODALIDADE": "Presencial", "DESISTÊNCIA": 87, "RETIDO": 14}], "situacao": [{"situacao": "EM PROCESSO", "total": 76}, {"situacao": "FINALIZADO", "total": 50}], "campus_distribuicao": [{"campus": "ALFENAS", "total": 97}, {"campus": "DIVINOPOLIS", "total": 14}, {"campus": "BH", "total": 10}, {"campus": "VARGINHA", "total": 4}, {"campus": "CAMPO BELO", "total": 1}], "tabela": [{"Nome": "FABRÍCIO DE SOUZA VAZ", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "19/12/2025", "Modalidade": "Presencial"}, {"Nome": "ALICE DE MELO PAIVA PINTO", "Campus": "ALFENAS", "Curso": "ODONTOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "29/01/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA EDUARDA", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "26/01/2026", "Modalidade": "Presencial"}, {"Nome": "ANA BEATRIZ LOPES", "Campus": "ALFENAS", "Curso": "ODONTOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "27/01/2026", "Modalidade": "Presencial"}, {"Nome": "LETICIA EVELYN SILVA RODRIGUES", "Campus": "DIVINOPOLIS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "01/12/2025", "Modalidade": "Presencial"}, {"Nome": "JÚLIA ROBERTA ARAÚJO", "Campus": "ALFENAS", "Curso": "ESTETICA E COSMETICA", "Resultado": "RETIDO", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "03/12/2025", "Modalidade": "Presencial"}, {"Nome": "DIANA REZENDE ALMEIDA", "Campus": "ALFENAS", "Curso": "MARKETING EAD", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "19/01/2026", "Modalidade": "EAD"}, {"Nome": "HIASMYN DE FREITAS RIBEIRO", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "09/12/2025", "Modalidade": "Presencial"}, {"Nome": "NATHALIA COELHO DA SILVA", "Campus": "DIVINOPOLIS", "Curso": "ODONTOLOGIA", "Resultado": "RETIDO", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "19/12/2025", "Modalidade": "Presencial"}, {"Nome": "LIVIA MARIA DE SOUZA CANDELORI", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "21/01/2026", "Modalidade": "EAD"}, {"Nome": "MATHEUS HENRIQUE MESQUITA SILVEIRA", "Campus": "DIVINOPOLIS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "29/01/2026", "Modalidade": "Presencial"}, {"Nome": "ANA LAURA MELO DE LIMA MEGALE", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "29/01/2026", "Modalidade": "Presencial"}, {"Nome": "PAULO  SILVA", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "RETIDO", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "06/01/2026", "Modalidade": "Presencial"}, {"Nome": "GABRIEL HENRIQUE CUSTÓDIO DA SILVA", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "ACADÊMICO", "Situação": "FINALIZADO", "Data Solicitação": "29/12/2025", "Modalidade": "Presencial"}, {"Nome": "MARCELO EZIQUIEL DE OLIVEIRA", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "FINALIZADO", "Data Solicitação": "05/01/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA EDUARDA SILVA FERREIRA", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "FINALIZADO", "Data Solicitação": "05/01/2026", "Modalidade": "EAD"}, {"Nome": "GABRIELLE DOS SANTOS MARCINEIRO", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "15/01/2026", "Modalidade": "EAD"}, {"Nome": "PEDRO HENRIQUE NASCIMENTO PEREIRA", "Campus": "ALFENAS", "Curso": "CIÊNCIA DA COMPUTAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "13/01/2026", "Modalidade": "Presencial"}, {"Nome": "NATÁLIA GABRIELA LOPES GARCIA", "Campus": "ALFENAS", "Curso": "ENGENHARIA CIVIL", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "FINALIZADO", "Data Solicitação": "20/01/2026", "Modalidade": "Presencial"}, {"Nome": "ANA CAROLINE RIBEIRO MARQUES", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "20/01/2026", "Modalidade": "Presencial"}, {"Nome": "LUIZ FELIPE DOS SANTOS AZEVEDO COELHO", "Campus": "ALFENAS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "30/01/2026", "Modalidade": "Presencial"}, {"Nome": "DANIELLE DE FÁTIMA BERNARDES", "Campus": "ALFENAS", "Curso": "GESTAO COMERCIAL ()", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "10/12/2025", "Modalidade": "EAD"}, {"Nome": "GABRIELLI EDUARDA ROSSI DE CASTILHO", "Campus": "ALFENAS", "Curso": "ENFERMAGEM", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "19/12/2025", "Modalidade": "Presencial"}, {"Nome": "ANA PAULA RODRIGUES DA SILVA", "Campus": "ALFENAS", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "FINALIZADO", "Data Solicitação": "03/01/2026", "Modalidade": "Presencial"}, {"Nome": "ISADORA VIEIRA E PEREIRA", "Campus": "ALFENAS", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "19/01/2026", "Modalidade": "Presencial"}, {"Nome": "GABRIELA GONÇALVES CORDEIRO", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "FINALIZADO", "Data Solicitação": "29/01/2026", "Modalidade": "EAD"}, {"Nome": "KHADIJA CARVALHO DA SILVA", "Campus": "ALFENAS", "Curso": "LOGÍSTICA ()", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "30/01/2026", "Modalidade": "EAD"}, {"Nome": "ANA FLÁVIA MOURA AMADO", "Campus": "ALFENAS", "Curso": "ODONTOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "02/02/2026", "Modalidade": "Presencial"}, {"Nome": "EDUARDA LUIZA CASTRO", "Campus": "DIVINOPOLIS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "06/02/2026", "Modalidade": "Presencial"}, {"Nome": "VINICIUS RIBEIRO FONSECA", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "02/02/2026", "Modalidade": "Presencial"}, {"Nome": "VITÓRIA APARECIDA DE SOUSA", "Campus": "DIVINOPOLIS", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "06/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANA JÚLIA", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "03/02/2026", "Modalidade": "Presencial"}, {"Nome": "LAVÍNIA ARRUOLA DA COSTA", "Campus": "ALFENAS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "02/02/2026", "Modalidade": "Presencial"}, {"Nome": "CARLA ANGELICA MOREIRA", "Campus": "ALFENAS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "02/02/2026", "Modalidade": "Presencial"}, {"Nome": "NATHÁLIA SANTOS FERREIRA", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "RETIDO", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "02/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANNA CLARA GUIMARÃES RIBEIRO", "Campus": "BH", "Curso": "PSICOLOGIA - BELO HORIZONTE", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "RAYSSA OLIVEIRA BARBOSA", "Campus": "DIVINOPOLIS", "Curso": "ODONTOLOGIA", "Resultado": "RETIDO", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "CARLOS HENRIQUE ANTUNES MACEDO", "Campus": "ALFENAS", "Curso": "ADMNISTRAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "FINALIZADO", "Data Solicitação": "04/02/2026", "Modalidade": "Presencial"}, {"Nome": "EMILY DA SILVA COELHO", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "30/01/2026", "Modalidade": "Presencial"}, {"Nome": "JOÃO VICTOR FALLEIROS", "Campus": "ALFENAS", "Curso": "INTELIGÊNCIA ARTIFICIAL", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "22/12/2025", "Modalidade": "EAD"}, {"Nome": "SAULO SANTOS FERREIRA GOULART", "Campus": "ALFENAS", "Curso": "INTELIGÊNCIA ARTIFICIAL", "Resultado": "DESISTÊNCIA", "Motivo": "NÃO INFORMADO", "Situação": "EM PROCESSO", "Data Solicitação": "16/01/2026", "Modalidade": "EAD"}, {"Nome": "TUANI OLIVEIRA", "Campus": "ALFENAS", "Curso": "LOGÍSTICA ()", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "FINALIZADO", "Data Solicitação": "03/02/2026", "Modalidade": "EAD"}, {"Nome": "SAMIRA DO CARMO XAVIER DA SILVA", "Campus": "ALFENAS", "Curso": "PEDAGOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "10/02/2026", "Modalidade": "Presencial"}, {"Nome": "PEDRO HENRIQUE DE SOUZA", "Campus": "BH", "Curso": "ADS EAD", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "12/02/2026", "Modalidade": "EAD"}, {"Nome": "GABRIELA GONÇALVES DUARTE SILVA", "Campus": "DIVINOPOLIS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "Presencial"}, {"Nome": "LARISSA RODRIGUES FERREIRA", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "19/02/2026", "Modalidade": "Presencial"}, {"Nome": "GABRIEL COSTA ALVES DE MEIRA", "Campus": "ALFENAS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "GABRIEL DE CASTRO SOUZA", "Campus": "DIVINOPOLIS", "Curso": "NUTRIÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARCELO VELOSO", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "CAMILA DE NAZARÉ ROCHA", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA ELISA DE LIMA PEREIRA", "Campus": "ALFENAS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANA ELISA GARCIA RODRIGUES", "Campus": "ALFENAS", "Curso": "ADMNISTRAÇÃO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "EAD"}, {"Nome": "PAULO HENRIQUE MELO DE CASTILHO", "Campus": "ALFENAS", "Curso": "ENGENHARIA CÍVIL", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "Presencial"}, {"Nome": "HYAN PRAXEDES", "Campus": "ALFENAS", "Curso": "GESTÃO FINANCEIRA EAD", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "EAD"}, {"Nome": "ISADORA TEODOSIO AVILA", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "Presencial"}, {"Nome": "EMANUELLY VITORIA GONÇALVES DA SILVA", "Campus": "BH", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "01/02/2026", "Modalidade": "Presencial"}, {"Nome": "LUIZ GUSTAVO REIS VIEIRA", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "EAD"}, {"Nome": "JOÃO GABRIEL AFONSO DE OLIVEIRA", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "13/02/2026", "Modalidade": "Presencial"}, {"Nome": "NATHÁLIA SANTOS FERREIRA", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "02/01/2026", "Modalidade": "Presencial"}, {"Nome": "GEOVANNA MARTINS DE LIMA", "Campus": "ALFENAS", "Curso": "GESTÃO DO AGRONEGÓCIO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "NÃO INFORMADO", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "EAD"}, {"Nome": "VITÓRIA CRISTINA DA SILVA", "Campus": "VARGINHA", "Curso": "NUTRIÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "09/02/2026", "Modalidade": "Presencial"}, {"Nome": "MATHEUS CORREA", "Campus": "ALFENAS", "Curso": "ADS EAD", "Resultado": "RETIDO", "Motivo": "ACADÊMICO", "Situação": "FINALIZADO", "Data Solicitação": "25/02/2026", "Modalidade": "EAD"}, {"Nome": "ANA JÚLIA", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "03/02/2026", "Modalidade": "Presencial"}, {"Nome": "LARAH FABIA CLENTON", "Campus": "ALFENAS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "09/02/2026", "Modalidade": "Presencial"}, {"Nome": "RAFAELA BATISTA TAVARES", "Campus": "ALFENAS", "Curso": "ENFERMAGEM", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "10/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA EDUARDA ELLEM RODRIGUES", "Campus": "BH", "Curso": "BIOMEDICINA", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "BRYAN MIGUEL ONGARO PEREIRA", "Campus": "VARGINHA", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "12/02/2026", "Modalidade": "Presencial"}, {"Nome": "HUGO TADEU ARANTES COSTA", "Campus": "DIVINOPOLIS", "Curso": "EDUCAÇÃO FÍSICA", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "20/02/2026", "Modalidade": "Presencial"}, {"Nome": "GIOVANNY BORBA BRAGA", "Campus": "ALFENAS", "Curso": "CIÊNCIAS DA COMPUTAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "09/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA EDUARDA DE MORAES", "Campus": "BH", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "02/02/2026", "Modalidade": "Presencial"}, {"Nome": "JOÃO PEDRO DE ARAÚJO", "Campus": "ALFENAS", "Curso": "ENFERMAGEM", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "11/02/2026", "Modalidade": "Presencial"}, {"Nome": "JAINE RAIANE BUENO PINHEIRO", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "EAD"}, {"Nome": "DAVI GOMES BRANDÃO", "Campus": "ALFENAS", "Curso": "MEDICINA VETERINÁRIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "04/02/2026", "Modalidade": "Presencial"}, {"Nome": "NAELY APARECIDA FERREIRA", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "05/02/2026", "Modalidade": "Presencial"}, {"Nome": "LUNA AZEVEDO", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO EAD", "Resultado": "RETIDO", "Motivo": "OUTROS", "Situação": "FINALIZADO", "Data Solicitação": "11/02/2026", "Modalidade": "EAD"}, {"Nome": "NATHALIA APARECIDA SILVA", "Campus": "ALFENAS", "Curso": "CIÊNCIA DA COMPUTAÇÃO", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "24/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANA CLARA MARTINS DE OLIVEIRA", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "20/02/2026", "Modalidade": "Presencial"}, {"Nome": "RAFAELA LOPES FERNANDES PINHEIRO", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "25/02/2026", "Modalidade": "Presencial"}, {"Nome": "GUILHERME FERREIRA BRITO", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "25/02/2026", "Modalidade": "Presencial"}, {"Nome": "EDUARDO HENRIQUE FRENHAN DOS SANTOS", "Campus": "ALFENAS", "Curso": "CIÊNCIAS DA COMPUTAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "20/02/2026", "Modalidade": "Presencial"}, {"Nome": "HELENA MENDES FERNANDES", "Campus": "ALFENAS", "Curso": "FARMÁCIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "20/02/2026", "Modalidade": "Presencial"}, {"Nome": "FABIO FRANCISCO PEREIRA", "Campus": "ALFENAS", "Curso": "CIÊNCIAS DA COMPUTAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "23/02/2026", "Modalidade": "Presencial"}, {"Nome": "ADRIAN FIGUEIREDO", "Campus": "ALFENAS", "Curso": "NUTRIÇÃO", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "FINALIZADO", "Data Solicitação": "25/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA ISABELA TAVARES GONÇALVES", "Campus": "ALFENAS", "Curso": "ODONTOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "23/02/2026", "Modalidade": "Presencial"}, {"Nome": "CLARA MARIA ALVES SILVA", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "26/02/2026", "Modalidade": "Presencial"}, {"Nome": "MICKAEL TORRES", "Campus": "ALFENAS", "Curso": "GESTÃO DE RECURSOS HUMANOS EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "22/02/2026", "Modalidade": "EAD"}, {"Nome": "LORRAYNE CRISTINI INOCENCIO", "Campus": "ALFENAS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "18/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANDERSON GERALDO FRANÇA LIMA", "Campus": "BH", "Curso": "ADS EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "25/02/2026", "Modalidade": "EAD"}, {"Nome": "DAPHYNNE PEREIRA", "Campus": "ALFENAS", "Curso": "EDUCAÇÃO FÍSICA", "Resultado": "DESISTÊNCIA", "Motivo": "NÃO INFORMADO", "Situação": "EM PROCESSO", "Data Solicitação": "09/02/2026", "Modalidade": "Presencial"}, {"Nome": "CAROLINA MARIA LEITE", "Campus": "ALFENAS", "Curso": "CIÊNCIAS CONTÁBEIS", "Resultado": "RETIDO", "Motivo": "ACADÊMICO", "Situação": "FINALIZADO", "Data Solicitação": "13/02/2026", "Modalidade": "Presencial"}, {"Nome": "LUIZ EDUARDO DE FARIA", "Campus": "ALFENAS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "ACADÊMICO", "Situação": "EM PROCESSO", "Data Solicitação": "19/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANA LUIZA GONÇALVES LOUZADA", "Campus": "BH", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "23/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARCOS ANTÔNIO SANTA ROSA DE OLIVEIRA", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "25/02/2026", "Modalidade": "Presencial"}, {"Nome": "LAIS RANNIERI DIAS TAVARES", "Campus": "DIVINOPOLIS", "Curso": "TERAPIA OCUPACIONAL", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "24/02/2026", "Modalidade": "Presencial"}, {"Nome": "VALQUÍRIA VITÓRIA PEDRO", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "24/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANNA VITÓRIA", "Campus": "BH", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "24/02/2026", "Modalidade": "Presencial"}, {"Nome": "BRUNA DE SOUZA MACÊDO", "Campus": "ALFENAS", "Curso": "TERAPIA OCUPACIONAL", "Resultado": "DESISTÊNCIA", "Motivo": "SEM CONTATO", "Situação": "EM PROCESSO", "Data Solicitação": "24/02/2026", "Modalidade": "Presencial"}, {"Nome": "THAUAN CANDIDO BATISTA", "Campus": "ALFENAS", "Curso": "EDUCAÇÃO FÍSICA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "26/02/2026", "Modalidade": "Presencial"}, {"Nome": "THAUAN CANDIDO BATISTA", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "26/02/2026", "Modalidade": "Presencial"}, {"Nome": "MARIA CLARA SILVA", "Campus": "ALFENAS", "Curso": "GESTÃO DO AGRONEGÓCIO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "25/02/2026", "Modalidade": "EAD"}, {"Nome": "EDUARDA GABRIELA BALBINA SALES", "Campus": "VARGINHA", "Curso": "CIÊNCIAS CONTÁBEIS", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "23/02/2026", "Modalidade": "Presencial"}, {"Nome": "ANA ELIZA MOREIRA SILVA", "Campus": "BH", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "22/02/2026", "Modalidade": "Presencial"}, {"Nome": "MICKAEL FELIPE ASSIR", "Campus": "ALFENAS", "Curso": "GESTÃO DO AGRONEGÓCIO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "23/01/2026", "Modalidade": "Presencial"}, {"Nome": "ASTRID DA COSTA PEREIRA", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "02/03/2026", "Modalidade": "Presencial"}, {"Nome": "ANA LAURA SANDY SILVA", "Campus": "ALFENAS", "Curso": "ENFERMAGEM", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "02/03/2026", "Modalidade": "Presencial"}, {"Nome": "THAMIRES RESENDE MOURA", "Campus": "DIVINOPOLIS", "Curso": "EDUCAÇÃO FÍSICA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "26/02/2026", "Modalidade": "Presencial"}, {"Nome": "LARISSA APARECIDA DE CARVALHO", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "01/03/2026", "Modalidade": "EAD"}, {"Nome": "YASMIN GOMES SILVESTRE", "Campus": "ALFENAS", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "27/02/2026", "Modalidade": "Presencial"}, {"Nome": "POLYANA MARQUES DA SILVA", "Campus": "VARGINHA", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "27/02/2026", "Modalidade": "Presencial"}, {"Nome": "CAROLINA MARIA LEITE", "Campus": "ALFENAS", "Curso": "CIÊNCIAS CONTÁBEIS", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "13/02/2026", "Modalidade": "Presencial"}, {"Nome": "LUANDA CARMELL BICCAS TRIGO SOUSA", "Campus": "ALFENAS", "Curso": "ADMINISTRAÇÃO EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "03/03/2026", "Modalidade": "EAD"}, {"Nome": "LIVIA STELLA DA SILVA MENDES", "Campus": "DIVINOPOLIS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "04/03/2026", "Modalidade": "Presencial"}, {"Nome": "LARA MATA GUIMARÃES DE SOUZA DA SILVA", "Campus": "BH", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "04/03/2026", "Modalidade": "Presencial"}, {"Nome": "PEDRO AUGUSTO PEREIRA DA SILVA", "Campus": "ALFENAS", "Curso": "ADS EAD", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "03/03/2026", "Modalidade": "EAD"}, {"Nome": "ESTER MOREIRA CARDOSO", "Campus": "ALFENAS", "Curso": "MARKETING EAD", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "28/02/2026", "Modalidade": "EAD"}, {"Nome": "MARCIO AUGUSTO DANTAS RODRIGUES FAR", "Campus": "ALFENAS", "Curso": "FISIOTERAPIA", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "26/02/2026", "Modalidade": "Presencial"}, {"Nome": "ALAN ALVES LOPES", "Campus": "ALFENAS", "Curso": "GESTÃO FINANCEIRA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "28/02/2026", "Modalidade": "Presencial"}, {"Nome": "NICKOLLY SHAYENE BORGES LIMA", "Campus": "CAMPO BELO", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "27/02/2026", "Modalidade": "Presencial"}, {"Nome": "SAMUEL ELIAS", "Campus": "ALFENAS", "Curso": "CIÊNCIAS CONTÁBEIS", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "27/02/2026", "Modalidade": "Presencial"}, {"Nome": "ALLAN MACEDO DA SILVA", "Campus": "ALFENAS", "Curso": "NUTRIÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "02/03/2026", "Modalidade": "Presencial"}, {"Nome": "OTÁVIO HENRIQUE VILELA DE CARVALHO", "Campus": "ALFENAS", "Curso": "AGRONOMIA", "Resultado": "RETIDO", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "04/03/2026", "Modalidade": "Presencial"}, {"Nome": "THALES DIEGO SOARES PINTO", "Campus": "DIVINOPOLIS", "Curso": "DIREITO", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "02/03/2026", "Modalidade": "Presencial"}, {"Nome": "LETÍCIA REIS DE CASTRO", "Campus": "DIVINOPOLIS", "Curso": "NUTRIÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "PESSOAL", "Situação": "EM PROCESSO", "Data Solicitação": "03/03/2026", "Modalidade": "Presencial"}, {"Nome": "ANTUNY MARQUES DE MENEZES", "Campus": "ALFENAS", "Curso": "CIÊNCIAS DA COMPUTAÇÃO", "Resultado": "DESISTÊNCIA", "Motivo": "TRANSFERÊNCIA", "Situação": "EM PROCESSO", "Data Solicitação": "05/03/2026", "Modalidade": "Presencial"}, {"Nome": "DHIOVANNA ALVES OLIVEIRA", "Campus": "ALFENAS", "Curso": "BIOMEDICINA", "Resultado": "DESISTÊNCIA", "Motivo": "OUTROS", "Situação": "EM PROCESSO", "Data Solicitação": "03/03/2026", "Modalidade": "Presencial"}, {"Nome": "JULIA VICTORIA SILVA DE ARAUJO", "Campus": "ALFENAS", "Curso": "PSICOLOGIA", "Resultado": "DESISTÊNCIA", "Motivo": "FINANCEIRO", "Situação": "EM PROCESSO", "Data Solicitação": "01/03/2026", "Modalidade": "Presencial"}]};
+
+// ── ESTADO ──
+let filteredData = [...RAW_DATA.tabela];
+let currentPage = 1;
+const rowsPerPage = 15;
+let sortCol = -1;
+let sortAsc = true;
+
+// Paleta de cores
+const COLORS = {
+  primary: '#1e3a5f',
+  primaryLight: '#2d5f9e',
+  danger: '#e74c3c',
+  success: '#27ae60',
+  warning: '#f39c12',
+  purple: '#8e44ad',
+  info: '#2980b9',
+  teal: '#16a085',
+  orange: '#e67e22',
+  pink: '#e91e63',
+};
+
+const MOTIVO_COLORS = {
+  'TRANSFERÊNCIA': '#3498db',
+  'FINANCEIRO': '#e74c3c',
+  'PESSOAL': '#9b59b6',
+  'OUTROS': '#f39c12',
+  'SEM CONTATO': '#95a5a6',
+  'ACADÊMICO': '#1abc9c',
+};
+
+const CAMPUS_COLORS = ['#1e3a5f','#2d5f9e','#e74c3c','#27ae60','#f39c12'];
+
+// ── INICIALIZAÇÃO ──
+document.addEventListener('DOMContentLoaded', () => {
+  populateFiltros();
+  updateKPIs(RAW_DATA.kpis);
+  renderCharts();
+  renderTable();
+});
+
+function populateFiltros() {
+  const campuses = [...new Set(RAW_DATA.tabela.map(r => r['Campus']))].sort();
+  const sel = document.getElementById('filtro-campus');
+  campuses.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+
+  const motivos = [...new Set(RAW_DATA.tabela.map(r => r['Motivo']))].sort();
+  const selM = document.getElementById('filtro-motivo');
+  motivos.forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m; opt.textContent = m;
+    selM.appendChild(opt);
+  });
+
+  ['filtro-campus','filtro-resultado','filtro-motivo','filtro-modalidade'].forEach(id => {
+    document.getElementById(id).addEventListener('change', applyFiltros);
+  });
+}
+
+function applyFiltros() {
+  const campus = document.getElementById('filtro-campus').value;
+  const resultado = document.getElementById('filtro-resultado').value;
+  const motivo = document.getElementById('filtro-motivo').value;
+  const modalidade = document.getElementById('filtro-modalidade').value;
+
+  filteredData = RAW_DATA.tabela.filter(r => {
+    return (!campus || r['Campus'] === campus)
+      && (!resultado || r['Resultado'] === resultado)
+      && (!motivo || r['Motivo'] === motivo)
+      && (!modalidade || r['Modalidade'] === modalidade);
+  });
+
+  currentPage = 1;
+  updateKPIsFromFiltered();
+  updateChartsFromFiltered();
+  renderTable();
+}
+
+function resetFiltros() {
+  ['filtro-campus','filtro-resultado','filtro-motivo','filtro-modalidade'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  filteredData = [...RAW_DATA.tabela];
+  currentPage = 1;
+  updateKPIs(RAW_DATA.kpis);
+  updateChartsFromFiltered();
+  renderTable();
+}
+
+function updateKPIsFromFiltered() {
+  const total = filteredData.length;
+  const desist = filteredData.filter(r => r['Resultado'] === 'DESISTÊNCIA').length;
+  const retido = filteredData.filter(r => r['Resultado'] === 'RETIDO').length;
+  const processo = filteredData.filter(r => r['Situação'] === 'EM PROCESSO').length;
+  const final = filteredData.filter(r => r['Situação'] === 'FINALIZADO').length;
+  updateKPIs({
+    total, desistencias: desist, retidos: retido,
+    taxa_desistencia: total ? +(desist/total*100).toFixed(1) : 0,
+    taxa_retencao: total ? +(retido/total*100).toFixed(1) : 0,
+    em_processo: processo, finalizados: final
+  });
+}
+
+function updateKPIs(kpis) {
+  document.getElementById('kpi-total').textContent = kpis.total;
+  document.getElementById('kpi-desist').textContent = kpis.desistencias;
+  document.getElementById('kpi-desist-pct').textContent = kpis.taxa_desistencia + '% do total';
+  document.getElementById('kpi-retido').textContent = kpis.retidos;
+  document.getElementById('kpi-retido-pct').textContent = kpis.taxa_retencao + '% do total';
+  document.getElementById('kpi-processo').textContent = kpis.em_processo;
+  document.getElementById('kpi-finalizado').textContent = kpis.finalizados;
+}
+
+// ── GRÁFICOS ──
+let charts = {};
+
+function renderCharts() {
+  Chart.register(ChartDataLabels);
+
+  // 1. Resultado Geral (Doughnut)
+  charts.resultado = new Chart(document.getElementById('chart-resultado'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Desistência', 'Retido'],
+      datasets: [{
+        data: [RAW_DATA.kpis.desistencias, RAW_DATA.kpis.retidos],
+        backgroundColor: [COLORS.danger, COLORS.success],
+        borderWidth: 3,
+        borderColor: '#fff',
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 13 }, padding: 16 } },
+        datalabels: {
+          color: '#fff', font: { weight: 'bold', size: 14 },
+          formatter: (v, ctx) => {
+            const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+            return (v/total*100).toFixed(1) + '%';
+          }
+        }
+      }
+    }
+  });
+
+  // 2. Motivos (Bar horizontal)
+  const motivosLabels = RAW_DATA.motivos.map(m => m.motivo);
+  const motivosVals = RAW_DATA.motivos.map(m => m.total);
+  const motivosBgColors = motivosLabels.map(l => MOTIVO_COLORS[l] || '#95a5a6');
+
+  charts.motivos = new Chart(document.getElementById('chart-motivos'), {
+    type: 'bar',
+    data: {
+      labels: motivosLabels,
+      datasets: [{
+        label: 'Alunos',
+        data: motivosVals,
+        backgroundColor: motivosBgColors,
+        borderRadius: 6,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          anchor: 'end', align: 'end',
+          color: '#333', font: { weight: 'bold', size: 12 },
+          formatter: v => v
+        }
+      },
+      scales: {
+        x: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 11 } } },
+        y: { grid: { display: false }, ticks: { font: { size: 12 } } }
+      }
+    }
+  });
+
+  // 3. Campus (Stacked bar)
+  const campusLabels = RAW_DATA.resultado_campus.map(r => r['CAMPUS']);
+  const campusDesist = RAW_DATA.resultado_campus.map(r => r['DESISTÊNCIA'] || 0);
+  const campusRetido = RAW_DATA.resultado_campus.map(r => r['RETIDO'] || 0);
+
+  charts.campus = new Chart(document.getElementById('chart-campus'), {
+    type: 'bar',
+    data: {
+      labels: campusLabels,
+      datasets: [
+        { label: 'Desistência', data: campusDesist, backgroundColor: COLORS.danger, borderRadius: 4 },
+        { label: 'Retido', data: campusRetido, backgroundColor: COLORS.success, borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 12 } },
+        datalabels: {
+          color: '#fff', font: { weight: 'bold', size: 11 },
+          formatter: v => v > 0 ? v : ''
+        }
+      },
+      scales: {
+        x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+        y: { stacked: true, grid: { color: '#f0f0f0' }, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+
+  // 4. Modalidade (Bar agrupado)
+  const modLabels = RAW_DATA.modalidade_resultado.map(r => r['MODALIDADE']);
+  const modDesist = RAW_DATA.modalidade_resultado.map(r => r['DESISTÊNCIA'] || 0);
+  const modRetido = RAW_DATA.modalidade_resultado.map(r => r['RETIDO'] || 0);
+
+  charts.modalidade = new Chart(document.getElementById('chart-modalidade'), {
+    type: 'bar',
+    data: {
+      labels: modLabels,
+      datasets: [
+        { label: 'Desistência', data: modDesist, backgroundColor: COLORS.danger, borderRadius: 6 },
+        { label: 'Retido', data: modRetido, backgroundColor: COLORS.success, borderRadius: 6 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 12 } },
+        datalabels: {
+          color: '#fff', font: { weight: 'bold', size: 13 },
+          formatter: v => v > 0 ? v : ''
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 13 } } },
+        y: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+
+  // 5. Evolução mensal (Line)
+  const mesLabels = RAW_DATA.solicitacoes_mes.map(m => {
+    const map = {'Dec/2025':'Dez/2025','Jan/2026':'Jan/2026','Feb/2026':'Fev/2026','Mar/2026':'Mar/2026'};
+    return map[m.MES_LABEL] || m.MES_LABEL;
+  });
+  const mesDesist = RAW_DATA.solicitacoes_mes.map(m => m['DESISTÊNCIA'] || 0);
+  const mesRetido = RAW_DATA.solicitacoes_mes.map(m => m['RETIDO'] || 0);
+
+  charts.mes = new Chart(document.getElementById('chart-mes'), {
+    type: 'line',
+    data: {
+      labels: mesLabels,
+      datasets: [
+        {
+          label: 'Desistências',
+          data: mesDesist,
+          borderColor: COLORS.danger,
+          backgroundColor: 'rgba(231,76,60,0.12)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 6, pointHoverRadius: 9,
+          borderWidth: 3
+        },
+        {
+          label: 'Retidos',
+          data: mesRetido,
+          borderColor: COLORS.success,
+          backgroundColor: 'rgba(39,174,96,0.12)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 6, pointHoverRadius: 9,
+          borderWidth: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 16 } },
+        datalabels: {
+          color: '#333', font: { weight: 'bold', size: 12 },
+          align: 'top', offset: 4,
+          formatter: v => v
+        }
+      },
+      scales: {
+        x: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 13 } } },
+        y: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 11 } }, beginAtZero: true }
+      }
+    }
+  });
+
+  // 6. Motivo × Resultado (Grouped bar)
+  const mrLabels = RAW_DATA.motivo_resultado.map(r => r['MOTIVO']);
+  const mrDesist = RAW_DATA.motivo_resultado.map(r => r['DESISTÊNCIA'] || 0);
+  const mrRetido = RAW_DATA.motivo_resultado.map(r => r['RETIDO'] || 0);
+
+  charts.motivoResultado = new Chart(document.getElementById('chart-motivo-resultado'), {
+    type: 'bar',
+    data: {
+      labels: mrLabels,
+      datasets: [
+        { label: 'Desistência', data: mrDesist, backgroundColor: COLORS.danger, borderRadius: 5 },
+        { label: 'Retido', data: mrRetido, backgroundColor: COLORS.success, borderRadius: 5 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 12 }, padding: 12 } },
+        datalabels: {
+          color: '#fff', font: { weight: 'bold', size: 11 },
+          formatter: v => v > 0 ? v : ''
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+        y: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 11 } }, beginAtZero: true }
+      }
+    }
+  });
+
+  // 7. Top cursos desistências (Bar horizontal)
+  const cursosLabels = RAW_DATA.cursos_desistencias.map(c => c.curso);
+  const cursosVals = RAW_DATA.cursos_desistencias.map(c => c.desistencias);
+  const cursosColors = cursosVals.map((_, i) => `hsl(${210 + i * 12}, 65%, ${45 + i * 2}%)`);
+
+  charts.cursos = new Chart(document.getElementById('chart-cursos'), {
+    type: 'bar',
+    data: {
+      labels: cursosLabels,
+      datasets: [{
+        label: 'Desistências',
+        data: cursosVals,
+        backgroundColor: cursosColors,
+        borderRadius: 5,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          anchor: 'end', align: 'end',
+          color: '#333', font: { weight: 'bold', size: 11 },
+          formatter: v => v
+        }
+      },
+      scales: {
+        x: { grid: { color: '#f0f0f0' }, ticks: { font: { size: 11 } }, beginAtZero: true },
+        y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+function updateChartsFromFiltered() {
+  // Recalcular dados dos gráficos com filteredData
+  const total = filteredData.length;
+  const desist = filteredData.filter(r => r['Resultado'] === 'DESISTÊNCIA').length;
+  const retido = filteredData.filter(r => r['Resultado'] === 'RETIDO').length;
+
+  // Resultado geral
+  charts.resultado.data.datasets[0].data = [desist, retido];
+  charts.resultado.update();
+
+  // Motivos
+  const motivoCount = {};
+  filteredData.forEach(r => { motivoCount[r['Motivo']] = (motivoCount[r['Motivo']] || 0) + 1; });
+  const sortedMotivos = Object.entries(motivoCount).sort((a,b) => b[1]-a[1]);
+  charts.motivos.data.labels = sortedMotivos.map(m => m[0]);
+  charts.motivos.data.datasets[0].data = sortedMotivos.map(m => m[1]);
+  charts.motivos.data.datasets[0].backgroundColor = sortedMotivos.map(m => MOTIVO_COLORS[m[0]] || '#95a5a6');
+  charts.motivos.update();
+
+  // Campus
+  const campusMap = {};
+  filteredData.forEach(r => {
+    if (!campusMap[r['Campus']]) campusMap[r['Campus']] = {d:0, r:0};
+    if (r['Resultado'] === 'DESISTÊNCIA') campusMap[r['Campus']].d++;
+    else campusMap[r['Campus']].r++;
+  });
+  const campusKeys = Object.keys(campusMap);
+  charts.campus.data.labels = campusKeys;
+  charts.campus.data.datasets[0].data = campusKeys.map(k => campusMap[k].d);
+  charts.campus.data.datasets[1].data = campusKeys.map(k => campusMap[k].r);
+  charts.campus.update();
+
+  // Modalidade
+  const modMap = {};
+  filteredData.forEach(r => {
+    if (!modMap[r['Modalidade']]) modMap[r['Modalidade']] = {d:0, r:0};
+    if (r['Resultado'] === 'DESISTÊNCIA') modMap[r['Modalidade']].d++;
+    else modMap[r['Modalidade']].r++;
+  });
+  const modKeys = Object.keys(modMap);
+  charts.modalidade.data.labels = modKeys;
+  charts.modalidade.data.datasets[0].data = modKeys.map(k => modMap[k].d);
+  charts.modalidade.data.datasets[1].data = modKeys.map(k => modMap[k].r);
+  charts.modalidade.update();
+
+  // Motivo × Resultado
+  const mrMap = {};
+  filteredData.forEach(r => {
+    if (!mrMap[r['Motivo']]) mrMap[r['Motivo']] = {d:0, r:0};
+    if (r['Resultado'] === 'DESISTÊNCIA') mrMap[r['Motivo']].d++;
+    else mrMap[r['Motivo']].r++;
+  });
+  const mrKeys = Object.keys(mrMap);
+  charts.motivoResultado.data.labels = mrKeys;
+  charts.motivoResultado.data.datasets[0].data = mrKeys.map(k => mrMap[k].d);
+  charts.motivoResultado.data.datasets[1].data = mrKeys.map(k => mrMap[k].r);
+  charts.motivoResultado.update();
+
+  // Top cursos desistências
+  const cursosMap = {};
+  filteredData.filter(r => r['Resultado'] === 'DESISTÊNCIA').forEach(r => {
+    cursosMap[r['Curso']] = (cursosMap[r['Curso']] || 0) + 1;
+  });
+  const sortedCursos = Object.entries(cursosMap).sort((a,b) => b[1]-a[1]).slice(0,12);
+  charts.cursos.data.labels = sortedCursos.map(c => c[0]);
+  charts.cursos.data.datasets[0].data = sortedCursos.map(c => c[1]);
+  charts.cursos.data.datasets[0].backgroundColor = sortedCursos.map((_, i) => `hsl(${210 + i * 12}, 65%, ${45 + i * 2}%)`);
+  charts.cursos.update();
+}
+
+// ── TABELA ──
+function getMotivoBadgeStyle(motivo) {
+  const styles = {
+    'TRANSFERÊNCIA': 'background:#dbeafe;color:#1d4ed8',
+    'FINANCEIRO': 'background:#fde8e8;color:#c0392b',
+    'PESSOAL': 'background:#f3e5f5;color:#6a1b9a',
+    'OUTROS': 'background:#fef3e2;color:#b7770d',
+    'SEM CONTATO': 'background:#f0f0f0;color:#555',
+    'ACADÊMICO': 'background:#d4efdf;color:#1e8449',
+  };
+  return styles[motivo] || 'background:#f0f0f0;color:#555';
+}
+
+function renderTable() {
+  const search = document.getElementById('table-search').value.toLowerCase();
+  let data = filteredData.filter(r =>
+    !search ||
+    (r['Nome'] || '').toLowerCase().includes(search) ||
+    (r['Curso'] || '').toLowerCase().includes(search) ||
+    (r['Campus'] || '').toLowerCase().includes(search) ||
+    (r['Motivo'] || '').toLowerCase().includes(search)
+  );
+
+  const total = data.length;
+  const start = (currentPage - 1) * rowsPerPage;
+  const pageData = data.slice(start, start + rowsPerPage);
+
+  document.getElementById('table-info').textContent = `Exibindo ${Math.min(start+1, total)}–${Math.min(start+rowsPerPage, total)} de ${total} registros`;
+
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = pageData.map(r => {
+    const resClass = r['Resultado'] === 'DESISTÊNCIA' ? 'desistencia' : 'retido';
+    const resLabel = r['Resultado'] === 'DESISTÊNCIA' ? 'Desistência' : 'Retido';
+    const sitClass = r['Situação'] === 'FINALIZADO' ? 'finalizado' : 'em-processo';
+    const sitLabel = r['Situação'] === 'EM PROCESSO' ? 'Em Processo' : 'Finalizado';
+    const motivoStyle = getMotivoBadgeStyle(r['Motivo']);
+    return `<tr>
+      <td style="font-weight:600;max-width:200px">${r['Nome'] || '—'}</td>
+      <td>${r['Campus'] || '—'}</td>
+      <td style="max-width:180px;font-size:0.82rem">${r['Curso'] || '—'}</td>
+      <td><span style="font-size:0.78rem;font-weight:600;color:${r['Modalidade']==='EAD'?'#1d4ed8':'#1e8449'}">${r['Modalidade']}</span></td>
+      <td><span class="badge-resultado ${resClass}">${resLabel}</span></td>
+      <td><span class="badge-motivo" style="${motivoStyle}">${r['Motivo'] || '—'}</span></td>
+      <td><span class="badge-situacao ${sitClass}">${sitLabel}</span></td>
+      <td style="white-space:nowrap;font-size:0.82rem">${r['Data Solicitação'] || '—'}</td>
+    </tr>`;
+  }).join('');
+
+  renderPagination(total);
+}
+
+function filterTable() {
+  currentPage = 1;
+  renderTable();
+}
+
+function renderPagination(total) {
+  const pages = Math.ceil(total / rowsPerPage);
+  const pag = document.getElementById('pagination');
+  pag.innerHTML = '';
+  if (pages <= 1) return;
+
+  const addBtn = (label, page, active) => {
+    const btn = document.createElement('button');
+    btn.className = 'page-btn' + (active ? ' active' : '');
+    btn.textContent = label;
+    btn.onclick = () => { currentPage = page; renderTable(); };
+    pag.appendChild(btn);
+  };
+
+  addBtn('«', 1, false);
+  for (let i = Math.max(1, currentPage-2); i <= Math.min(pages, currentPage+2); i++) {
+    addBtn(i, i, i === currentPage);
+  }
+  addBtn('»', pages, false);
+}
+
+function sortTable(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = true; }
+
+  const keys = ['Nome','Campus','Curso','Modalidade','Resultado','Motivo','Situação','Data Solicitação'];
+  const key = keys[col];
+  filteredData.sort((a, b) => {
+    const va = (a[key] || '').toString().toLowerCase();
+    const vb = (b[key] || '').toString().toLowerCase();
+    return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+  });
+  currentPage = 1;
+  renderTable();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1509 @@
+{
+  "kpis": {
+    "total": 126,
+    "retidos": 17,
+    "desistencias": 109,
+    "taxa_retencao": 13.5,
+    "taxa_desistencia": 86.5,
+    "em_processo": 76,
+    "finalizados": 50
+  },
+  "resultado_campus": [
+    {
+      "CAMPUS": "ALFENAS",
+      "DESISTÊNCIA": 83,
+      "RETIDO": 14
+    },
+    {
+      "CAMPUS": "BH",
+      "DESISTÊNCIA": 9,
+      "RETIDO": 1
+    },
+    {
+      "CAMPUS": "CAMPO BELO",
+      "DESISTÊNCIA": 1,
+      "RETIDO": 0
+    },
+    {
+      "CAMPUS": "DIVINOPOLIS",
+      "DESISTÊNCIA": 12,
+      "RETIDO": 2
+    },
+    {
+      "CAMPUS": "VARGINHA",
+      "DESISTÊNCIA": 4,
+      "RETIDO": 0
+    }
+  ],
+  "motivos": [
+    {
+      "motivo": "TRANSFERÊNCIA",
+      "total": 34
+    },
+    {
+      "motivo": "FINANCEIRO",
+      "total": 31
+    },
+    {
+      "motivo": "PESSOAL",
+      "total": 20
+    },
+    {
+      "motivo": "OUTROS",
+      "total": 19
+    },
+    {
+      "motivo": "SEM CONTATO",
+      "total": 15
+    },
+    {
+      "motivo": "ACADÊMICO",
+      "total": 4
+    },
+    {
+      "motivo": "NÃO INFORMADO",
+      "total": 3
+    }
+  ],
+  "motivo_resultado": [
+    {
+      "MOTIVO": "ACADÊMICO",
+      "DESISTÊNCIA": 2,
+      "RETIDO": 2
+    },
+    {
+      "MOTIVO": "FINANCEIRO",
+      "DESISTÊNCIA": 31,
+      "RETIDO": 0
+    },
+    {
+      "MOTIVO": "NÃO INFORMADO",
+      "DESISTÊNCIA": 3,
+      "RETIDO": 0
+    },
+    {
+      "MOTIVO": "OUTROS",
+      "DESISTÊNCIA": 13,
+      "RETIDO": 6
+    },
+    {
+      "MOTIVO": "PESSOAL",
+      "DESISTÊNCIA": 20,
+      "RETIDO": 0
+    },
+    {
+      "MOTIVO": "SEM CONTATO",
+      "DESISTÊNCIA": 15,
+      "RETIDO": 0
+    },
+    {
+      "MOTIVO": "TRANSFERÊNCIA",
+      "DESISTÊNCIA": 25,
+      "RETIDO": 9
+    }
+  ],
+  "cursos_desistencias": [
+    {
+      "curso": "DIREITO",
+      "desistencias": 11
+    },
+    {
+      "curso": "PSICOLOGIA",
+      "desistencias": 10
+    },
+    {
+      "curso": "FISIOTERAPIA",
+      "desistencias": 8
+    },
+    {
+      "curso": "BIOMEDICINA",
+      "desistencias": 7
+    },
+    {
+      "curso": "FARMÁCIA",
+      "desistencias": 7
+    },
+    {
+      "curso": "AGRONOMIA",
+      "desistencias": 6
+    },
+    {
+      "curso": "ADMINISTRAÇÃO",
+      "desistencias": 6
+    },
+    {
+      "curso": "ODONTOLOGIA",
+      "desistencias": 4
+    },
+    {
+      "curso": "MEDICINA VETERINÁRIA",
+      "desistencias": 4
+    },
+    {
+      "curso": "ENFERMAGEM",
+      "desistencias": 4
+    },
+    {
+      "curso": "CIÊNCIAS DA COMPUTAÇÃO",
+      "desistencias": 4
+    },
+    {
+      "curso": "ADMINISTRAÇÃO EAD",
+      "desistencias": 4
+    }
+  ],
+  "solicitacoes_mes": [
+    {
+      "MES_ANO": "2025-12",
+      "MES_LABEL": "Dec/2025",
+      "DESISTÊNCIA": 6.0,
+      "RETIDO": 3.0
+    },
+    {
+      "MES_ANO": "2026-01",
+      "MES_LABEL": "Jan/2026",
+      "DESISTÊNCIA": 20.0,
+      "RETIDO": 3.0
+    },
+    {
+      "MES_ANO": "2026-02",
+      "MES_LABEL": "Feb/2026",
+      "DESISTÊNCIA": 70.0,
+      "RETIDO": 10.0
+    },
+    {
+      "MES_ANO": "2026-03",
+      "MES_LABEL": "Mar/2026",
+      "DESISTÊNCIA": 13.0,
+      "RETIDO": 1.0
+    }
+  ],
+  "modalidade": [
+    {
+      "MODALIDADE": "EAD",
+      "RESULTADO": "DESISTÊNCIA",
+      "count": 22
+    },
+    {
+      "MODALIDADE": "EAD",
+      "RESULTADO": "RETIDO",
+      "count": 3
+    },
+    {
+      "MODALIDADE": "Presencial",
+      "RESULTADO": "DESISTÊNCIA",
+      "count": 87
+    },
+    {
+      "MODALIDADE": "Presencial",
+      "RESULTADO": "RETIDO",
+      "count": 14
+    }
+  ],
+  "modalidade_resultado": [
+    {
+      "MODALIDADE": "EAD",
+      "DESISTÊNCIA": 22,
+      "RETIDO": 3
+    },
+    {
+      "MODALIDADE": "Presencial",
+      "DESISTÊNCIA": 87,
+      "RETIDO": 14
+    }
+  ],
+  "situacao": [
+    {
+      "situacao": "EM PROCESSO",
+      "total": 76
+    },
+    {
+      "situacao": "FINALIZADO",
+      "total": 50
+    }
+  ],
+  "campus_distribuicao": [
+    {
+      "campus": "ALFENAS",
+      "total": 97
+    },
+    {
+      "campus": "DIVINOPOLIS",
+      "total": 14
+    },
+    {
+      "campus": "BH",
+      "total": 10
+    },
+    {
+      "campus": "VARGINHA",
+      "total": 4
+    },
+    {
+      "campus": "CAMPO BELO",
+      "total": 1
+    }
+  ],
+  "tabela": [
+    {
+      "Nome": "FABRÍCIO DE SOUZA VAZ",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "19/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ALICE DE MELO PAIVA PINTO",
+      "Campus": "ALFENAS",
+      "Curso": "ODONTOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "29/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA EDUARDA",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "26/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA BEATRIZ LOPES",
+      "Campus": "ALFENAS",
+      "Curso": "ODONTOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "27/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LETICIA EVELYN SILVA RODRIGUES",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "01/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "JÚLIA ROBERTA ARAÚJO",
+      "Campus": "ALFENAS",
+      "Curso": "ESTETICA E COSMETICA",
+      "Resultado": "RETIDO",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "03/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "DIANA REZENDE ALMEIDA",
+      "Campus": "ALFENAS",
+      "Curso": "MARKETING EAD",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "19/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "HIASMYN DE FREITAS RIBEIRO",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "09/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "NATHALIA COELHO DA SILVA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "ODONTOLOGIA",
+      "Resultado": "RETIDO",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "19/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LIVIA MARIA DE SOUZA CANDELORI",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "21/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "MATHEUS HENRIQUE MESQUITA SILVEIRA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "29/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA LAURA MELO DE LIMA MEGALE",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "29/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "PAULO  SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "RETIDO",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "06/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GABRIEL HENRIQUE CUSTÓDIO DA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "ACADÊMICO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "29/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARCELO EZIQUIEL DE OLIVEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "05/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA EDUARDA SILVA FERREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "05/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "GABRIELLE DOS SANTOS MARCINEIRO",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "15/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "PEDRO HENRIQUE NASCIMENTO PEREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIA DA COMPUTAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "13/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "NATÁLIA GABRIELA LOPES GARCIA",
+      "Campus": "ALFENAS",
+      "Curso": "ENGENHARIA CIVIL",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "20/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA CAROLINE RIBEIRO MARQUES",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "20/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LUIZ FELIPE DOS SANTOS AZEVEDO COELHO",
+      "Campus": "ALFENAS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "30/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "DANIELLE DE FÁTIMA BERNARDES",
+      "Campus": "ALFENAS",
+      "Curso": "GESTAO COMERCIAL ()",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "10/12/2025",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "GABRIELLI EDUARDA ROSSI DE CASTILHO",
+      "Campus": "ALFENAS",
+      "Curso": "ENFERMAGEM",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "19/12/2025",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA PAULA RODRIGUES DA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "03/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ISADORA VIEIRA E PEREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "19/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GABRIELA GONÇALVES CORDEIRO",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "29/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "KHADIJA CARVALHO DA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "LOGÍSTICA ()",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "30/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "ANA FLÁVIA MOURA AMADO",
+      "Campus": "ALFENAS",
+      "Curso": "ODONTOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "02/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "EDUARDA LUIZA CASTRO",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "06/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "VINICIUS RIBEIRO FONSECA",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "02/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "VITÓRIA APARECIDA DE SOUSA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "06/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA JÚLIA",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "03/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LAVÍNIA ARRUOLA DA COSTA",
+      "Campus": "ALFENAS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "02/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "CARLA ANGELICA MOREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "02/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "NATHÁLIA SANTOS FERREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "RETIDO",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "02/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANNA CLARA GUIMARÃES RIBEIRO",
+      "Campus": "BH",
+      "Curso": "PSICOLOGIA - BELO HORIZONTE",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "RAYSSA OLIVEIRA BARBOSA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "ODONTOLOGIA",
+      "Resultado": "RETIDO",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "CARLOS HENRIQUE ANTUNES MACEDO",
+      "Campus": "ALFENAS",
+      "Curso": "ADMNISTRAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "04/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "EMILY DA SILVA COELHO",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "30/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "JOÃO VICTOR FALLEIROS",
+      "Campus": "ALFENAS",
+      "Curso": "INTELIGÊNCIA ARTIFICIAL",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "22/12/2025",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "SAULO SANTOS FERREIRA GOULART",
+      "Campus": "ALFENAS",
+      "Curso": "INTELIGÊNCIA ARTIFICIAL",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "NÃO INFORMADO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "16/01/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "TUANI OLIVEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "LOGÍSTICA ()",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "03/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "SAMIRA DO CARMO XAVIER DA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "PEDAGOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "10/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "PEDRO HENRIQUE DE SOUZA",
+      "Campus": "BH",
+      "Curso": "ADS EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "12/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "GABRIELA GONÇALVES DUARTE SILVA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LARISSA RODRIGUES FERREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "19/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GABRIEL COSTA ALVES DE MEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GABRIEL DE CASTRO SOUZA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "NUTRIÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARCELO VELOSO",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "CAMILA DE NAZARÉ ROCHA",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA ELISA DE LIMA PEREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA ELISA GARCIA RODRIGUES",
+      "Campus": "ALFENAS",
+      "Curso": "ADMNISTRAÇÃO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "PAULO HENRIQUE MELO DE CASTILHO",
+      "Campus": "ALFENAS",
+      "Curso": "ENGENHARIA CÍVIL",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "HYAN PRAXEDES",
+      "Campus": "ALFENAS",
+      "Curso": "GESTÃO FINANCEIRA EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "ISADORA TEODOSIO AVILA",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "EMANUELLY VITORIA GONÇALVES DA SILVA",
+      "Campus": "BH",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "01/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LUIZ GUSTAVO REIS VIEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "JOÃO GABRIEL AFONSO DE OLIVEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "13/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "NATHÁLIA SANTOS FERREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "02/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GEOVANNA MARTINS DE LIMA",
+      "Campus": "ALFENAS",
+      "Curso": "GESTÃO DO AGRONEGÓCIO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "NÃO INFORMADO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "VITÓRIA CRISTINA DA SILVA",
+      "Campus": "VARGINHA",
+      "Curso": "NUTRIÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "09/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MATHEUS CORREA",
+      "Campus": "ALFENAS",
+      "Curso": "ADS EAD",
+      "Resultado": "RETIDO",
+      "Motivo": "ACADÊMICO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "ANA JÚLIA",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "03/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LARAH FABIA CLENTON",
+      "Campus": "ALFENAS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "09/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "RAFAELA BATISTA TAVARES",
+      "Campus": "ALFENAS",
+      "Curso": "ENFERMAGEM",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "10/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA EDUARDA ELLEM RODRIGUES",
+      "Campus": "BH",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "BRYAN MIGUEL ONGARO PEREIRA",
+      "Campus": "VARGINHA",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "12/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "HUGO TADEU ARANTES COSTA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "EDUCAÇÃO FÍSICA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "20/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GIOVANNY BORBA BRAGA",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS DA COMPUTAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "09/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA EDUARDA DE MORAES",
+      "Campus": "BH",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "02/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "JOÃO PEDRO DE ARAÚJO",
+      "Campus": "ALFENAS",
+      "Curso": "ENFERMAGEM",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "JAINE RAIANE BUENO PINHEIRO",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "DAVI GOMES BRANDÃO",
+      "Campus": "ALFENAS",
+      "Curso": "MEDICINA VETERINÁRIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "04/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "NAELY APARECIDA FERREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LUNA AZEVEDO",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO EAD",
+      "Resultado": "RETIDO",
+      "Motivo": "OUTROS",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "11/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "NATHALIA APARECIDA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIA DA COMPUTAÇÃO",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "24/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA CLARA MARTINS DE OLIVEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "20/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "RAFAELA LOPES FERNANDES PINHEIRO",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "GUILHERME FERREIRA BRITO",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "EDUARDO HENRIQUE FRENHAN DOS SANTOS",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS DA COMPUTAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "20/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "HELENA MENDES FERNANDES",
+      "Campus": "ALFENAS",
+      "Curso": "FARMÁCIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "20/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "FABIO FRANCISCO PEREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS DA COMPUTAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "23/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ADRIAN FIGUEIREDO",
+      "Campus": "ALFENAS",
+      "Curso": "NUTRIÇÃO",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA ISABELA TAVARES GONÇALVES",
+      "Campus": "ALFENAS",
+      "Curso": "ODONTOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "23/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "CLARA MARIA ALVES SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "26/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MICKAEL TORRES",
+      "Campus": "ALFENAS",
+      "Curso": "GESTÃO DE RECURSOS HUMANOS EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "22/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "LORRAYNE CRISTINI INOCENCIO",
+      "Campus": "ALFENAS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "18/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANDERSON GERALDO FRANÇA LIMA",
+      "Campus": "BH",
+      "Curso": "ADS EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "DAPHYNNE PEREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "EDUCAÇÃO FÍSICA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "NÃO INFORMADO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "09/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "CAROLINA MARIA LEITE",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS CONTÁBEIS",
+      "Resultado": "RETIDO",
+      "Motivo": "ACADÊMICO",
+      "Situação": "FINALIZADO",
+      "Data Solicitação": "13/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LUIZ EDUARDO DE FARIA",
+      "Campus": "ALFENAS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "ACADÊMICO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "19/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA LUIZA GONÇALVES LOUZADA",
+      "Campus": "BH",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "23/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARCOS ANTÔNIO SANTA ROSA DE OLIVEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LAIS RANNIERI DIAS TAVARES",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "TERAPIA OCUPACIONAL",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "24/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "VALQUÍRIA VITÓRIA PEDRO",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "24/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANNA VITÓRIA",
+      "Campus": "BH",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "24/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "BRUNA DE SOUZA MACÊDO",
+      "Campus": "ALFENAS",
+      "Curso": "TERAPIA OCUPACIONAL",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "SEM CONTATO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "24/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "THAUAN CANDIDO BATISTA",
+      "Campus": "ALFENAS",
+      "Curso": "EDUCAÇÃO FÍSICA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "26/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "THAUAN CANDIDO BATISTA",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "26/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MARIA CLARA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "GESTÃO DO AGRONEGÓCIO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "25/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "EDUARDA GABRIELA BALBINA SALES",
+      "Campus": "VARGINHA",
+      "Curso": "CIÊNCIAS CONTÁBEIS",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "23/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA ELIZA MOREIRA SILVA",
+      "Campus": "BH",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "22/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "MICKAEL FELIPE ASSIR",
+      "Campus": "ALFENAS",
+      "Curso": "GESTÃO DO AGRONEGÓCIO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "23/01/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ASTRID DA COSTA PEREIRA",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "02/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANA LAURA SANDY SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "ENFERMAGEM",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "02/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "THAMIRES RESENDE MOURA",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "EDUCAÇÃO FÍSICA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "26/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LARISSA APARECIDA DE CARVALHO",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "01/03/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "YASMIN GOMES SILVESTRE",
+      "Campus": "ALFENAS",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "27/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "POLYANA MARQUES DA SILVA",
+      "Campus": "VARGINHA",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "27/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "CAROLINA MARIA LEITE",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS CONTÁBEIS",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "13/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LUANDA CARMELL BICCAS TRIGO SOUSA",
+      "Campus": "ALFENAS",
+      "Curso": "ADMINISTRAÇÃO EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "03/03/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "LIVIA STELLA DA SILVA MENDES",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "04/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LARA MATA GUIMARÃES DE SOUZA DA SILVA",
+      "Campus": "BH",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "04/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "PEDRO AUGUSTO PEREIRA DA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "ADS EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "03/03/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "ESTER MOREIRA CARDOSO",
+      "Campus": "ALFENAS",
+      "Curso": "MARKETING EAD",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "28/02/2026",
+      "Modalidade": "EAD"
+    },
+    {
+      "Nome": "MARCIO AUGUSTO DANTAS RODRIGUES FAR",
+      "Campus": "ALFENAS",
+      "Curso": "FISIOTERAPIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "26/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ALAN ALVES LOPES",
+      "Campus": "ALFENAS",
+      "Curso": "GESTÃO FINANCEIRA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "28/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "NICKOLLY SHAYENE BORGES LIMA",
+      "Campus": "CAMPO BELO",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "27/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "SAMUEL ELIAS",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS CONTÁBEIS",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "27/02/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ALLAN MACEDO DA SILVA",
+      "Campus": "ALFENAS",
+      "Curso": "NUTRIÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "02/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "OTÁVIO HENRIQUE VILELA DE CARVALHO",
+      "Campus": "ALFENAS",
+      "Curso": "AGRONOMIA",
+      "Resultado": "RETIDO",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "04/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "THALES DIEGO SOARES PINTO",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "DIREITO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "02/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "LETÍCIA REIS DE CASTRO",
+      "Campus": "DIVINOPOLIS",
+      "Curso": "NUTRIÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "PESSOAL",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "03/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "ANTUNY MARQUES DE MENEZES",
+      "Campus": "ALFENAS",
+      "Curso": "CIÊNCIAS DA COMPUTAÇÃO",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "TRANSFERÊNCIA",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "05/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "DHIOVANNA ALVES OLIVEIRA",
+      "Campus": "ALFENAS",
+      "Curso": "BIOMEDICINA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "OUTROS",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "03/03/2026",
+      "Modalidade": "Presencial"
+    },
+    {
+      "Nome": "JULIA VICTORIA SILVA DE ARAUJO",
+      "Campus": "ALFENAS",
+      "Curso": "PSICOLOGIA",
+      "Resultado": "DESISTÊNCIA",
+      "Motivo": "FINANCEIRO",
+      "Situação": "EM PROCESSO",
+      "Data Solicitação": "01/03/2026",
+      "Modalidade": "Presencial"
+    }
+  ]
+}
