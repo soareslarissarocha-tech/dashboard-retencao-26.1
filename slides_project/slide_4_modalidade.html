@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #EDF2F7;
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            overflow: hidden;
+        }
+        .header-block {
+            background-color: #2D3748;
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+            min-height: 160px;
+        }
+        h2 {
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .accent-bar {
+            width: 120px;
+            height: 8px;
+            background-color: #E53E3E;
+            margin-top: 12px;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding-top: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .modalidade-card {
+            background-color: #FFFFFF;
+            padding-top: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
+            min-height: 400px;
+            border-top: 8px solid #2B6CB0;
+        }
+        .modalidade-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: #2B6CB0;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            border-bottom: 1px solid #E2E8F0;
+            padding-top: 10px;
+        }
+        .metric-label {
+            font-size: 18px;
+            font-weight: 400;
+            color: #4A5568;
+        }
+        .metric-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2D3748;
+        }
+        .desistencia-value {
+            color: #E53E3E;
+        }
+        .insight-footer {
+            background-color: #2B6CB0;
+            color: #FFFFFF;
+            margin-top: 40px;
+            padding-top: 20px;
+            padding-left: 60px;
+            padding-right: 60px;
+            min-height: 80px;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>Desafios de retenção são transversais a todas as modalidades</h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="comparison-grid">
+            <div class="modalidade-card">
+                <div class="modalidade-title">Educação a Distância (EAD)</div>
+                <div class="metric-row">
+                    <div class="metric-label">Solicitações</div>
+                    <div class="metric-value">25</div>
+                </div>
+                <div class="metric-row">
+                    <div class="metric-label">Taxa de Desistência</div>
+                    <div class="metric-value desistencia-value">88,0%</div>
+                </div>
+                <div class="metric-row" style="border-bottom: none;">
+                    <div class="metric-label">Alunos Retidos</div>
+                    <div class="metric-value" style="color: #2B6CB0;">03</div>
+                </div>
+            </div>
+            <div class="modalidade-card" style="border-top-color: #2D3748;">
+                <div class="modalidade-title" style="color: #2D3748;">Cursos Presenciais</div>
+                <div class="metric-row">
+                    <div class="metric-label">Solicitações</div>
+                    <div class="metric-value">101</div>
+                </div>
+                <div class="metric-row">
+                    <div class="metric-label">Taxa de Desistência</div>
+                    <div class="metric-value desistencia-value">86,1%</div>
+                </div>
+                <div class="metric-row" style="border-bottom: none;">
+                    <div class="metric-label">Alunos Retidos</div>
+                    <div class="metric-value" style="color: #2B6CB0;">14</div>
+                </div>
+            </div>
+        </div>
+        <div class="insight-footer">
+            <div style="width: 8px; height: 40px; background-color: #E53E3E; margin-right: 20px;"></div>
+            O EAD apresenta vulnerabilidade superior, mas o volume absoluto no presencial é o maior desafio institucional.
+        </div>
+    </div>
+</body>
+</html>

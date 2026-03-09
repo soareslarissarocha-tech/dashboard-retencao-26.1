@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #EDF2F7;
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            overflow: hidden;
+        }
+        .header-block {
+            background-color: #2B6CB0;
+            padding-top: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
+            min-height: 120px;
+        }
+        h2 {
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .accent-bar {
+            width: 120px;
+            height: 8px;
+            background-color: #E53E3E;
+            margin-top: 12px;
+        }
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            padding-top: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .kpi-block {
+            background-color: #2D3748;
+            color: #FFFFFF;
+            padding-top: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            min-height: 180px;
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 8px solid #E53E3E;
+        }
+        .kpi-large {
+            font-size: 72px;
+            font-weight: 900;
+            color: #E53E3E;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            max-width: 400px;
+        }
+        .list-block {
+            background-color: #FFFFFF;
+            padding-top: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            min-height: 320px;
+            border-top: 8px solid #2B6CB0;
+        }
+        .block-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #2B6CB0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 18px;
+        }
+        .course-name { font-weight: 700; }
+        .course-count { color: #E53E3E; font-weight: 900; }
+        .insight-block {
+            background-color: #FFFFFF;
+            padding-top: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            min-height: 320px;
+            border-top: 8px solid #E53E3E;
+        }
+        .recommendation {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #EDF2F7;
+        }
+        .highlight {
+            color: #E53E3E;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>Alfenas é o ponto crítico que exige atenção imediata</h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="main-grid">
+            <div class="kpi-block">
+                <div class="kpi-label">Concentração de solicitações no Campus Alfenas</div>
+                <div class="kpi-large">77%</div>
+            </div>
+            <div class="list-block">
+                <div class="block-title">Cursos com mais desistências</div>
+                <div class="course-item"><span class="course-name">Fisioterapia</span> <span class="course-count">7</span></div>
+                <div class="course-item"><span class="course-name">Psicologia</span> <span class="course-count">7</span></div>
+                <div class="course-item"><span class="course-name">Agronomia</span> <span class="course-count">6</span></div>
+                <div class="course-item"><span class="course-name">Farmácia</span> <span class="course-count">5</span></div>
+                <div class="course-item" style="border-bottom: none;"><span class="course-name">Odontologia</span> <span class="course-count">4</span></div>
+            </div>
+            <div class="insight-block">
+                <div class="block-title" style="color: #E53E3E;">Análise de Impacto Local</div>
+                <div class="insight-text" style="font-size: 18px; line-height: 1.5;">
+                    Forte pressão de <span class="highlight">transferência para instituições públicas</span> da região (ex: UNIFAL). <br><br>
+                    O fator financeiro é o gatilho crítico para o curso de Farmácia.
+                </div>
+                <div class="recommendation">
+                    <strong>Ação Recomendada:</strong> Criar um grupo de trabalho específico para retenção em Alfenas e revisar políticas de bolsas para cursos de saúde.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

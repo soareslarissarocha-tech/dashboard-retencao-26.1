@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #EDF2F7;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 400px;
+            background-color: #2B6CB0;
+            padding-top: 100px;
+            padding-left: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            flex: 1;
+            padding-top: 100px;
+            padding-left: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 90px; /* reduced from 100px to remove overflow */
+        }
+        .accent-bar {
+            width: 80px;
+            height: 8px;
+            background-color: #E53E3E;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #FFFFFF;
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            color: #2D3748;
+            font-size: 32px;
+            font-weight: 700;
+            max-width: 700px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            border-top: 2px solid #2D3748;
+            padding-top: 20px;
+            max-width: 400px;
+        }
+        .info-text {
+            color: #2D3748;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .tag {
+            background-color: #2D3748;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: 700;
+            align-self: flex-start;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="sidebar">
+            <div class="accent-bar" style="background-color: #FFFFFF;"></div>
+            <h1>Retenção<br>Alunos<br>26.1</h1>
+        </div>
+        <div class="main-content">
+            <div>
+                <div class="tag">RELATÓRIO ESTRATÉGICO</div>
+                <div class="subtitle">Análise de Desistências e Retenção:<br>Demais Cursos & EAD</div>
+                <div class="accent-bar"></div>
+            </div>
+            <div class="info-box">
+                <div class="info-text"><strong>Apresentado por:</strong> [Seu Nome]</div>
+                <div class="info-text"><strong>Data:</strong> Março de 2026</div>
+                <div class="info-text"><strong>Status:</strong> Confidencial / Diretoria</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

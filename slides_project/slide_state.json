@@ -1,0 +1,132 @@
+{
+  "project_info": {
+    "title": "Apresentação Estratégica: Retenção de Alunos 26.1",
+    "created": 1773057045.068848,
+    "last_updated": 1773057222.5882947,
+    "total_slides": 10
+  },
+  "slides": [
+    {
+      "id": "slide_1_titulo",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "slide_2_contexto",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "slide_3_kpis",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "slide_4_modalidade",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "slide_5_sazonalidade",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "slide_6_motivos",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "slide_7_alfenas",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "slide_8_dashboard",
+      "state": "edit_pending",
+      "pageNum": 8
+    },
+    {
+      "id": "slide_9_recomendacoes",
+      "state": "edit_pending",
+      "pageNum": 9
+    },
+    {
+      "id": "slide_10_conclusao",
+      "state": "edit_pending",
+      "pageNum": 10
+    }
+  ],
+  "outline": [
+    {
+      "id": "slide_1_titulo",
+      "title": "Apresentação Estratégica: Retenção de Alunos 26.1",
+      "summary": "Slide de título com o nome da apresentação, subtítulo e informações do apresentador.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_2_contexto",
+      "title": "Monitoramento contínuo é essencial para a sustentabilidade institucional",
+      "summary": "Contexto, objetivos e escopo da análise de retenção para o semestre 26.1.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_3_kpis",
+      "title": "Baixa taxa de retenção inicial exige intervenção estratégica",
+      "summary": "Principais indicadores de desempenho (KPIs) de retenção e desistência.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_4_modalidade",
+      "title": "Desafios de retenção são transversais a todas as modalidades",
+      "summary": "Comparativo detalhado entre os cursos EAD e presenciais.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_5_sazonalidade",
+      "title": "Fevereiro concentra o maior volume de pedidos de saída",
+      "summary": "Análise temporal das solicitações ao longo do semestre.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_6_motivos",
+      "title": "Fatores externos (Financeiro e Transferência) dominam as saídas",
+      "summary": "Distribuição dos principais motivos que levam à desistência dos alunos.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_7_alfenas",
+      "title": "Alfenas é o ponto crítico que exige atenção imediata",
+      "summary": "Análise específica do Campus Alfenas, o mais afetado no semestre.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_8_dashboard",
+      "title": "Nova ferramenta permite gestão baseada em dados em tempo real",
+      "summary": "Apresentação do dashboard interativo e seus benefícios para a diretoria.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_9_recomendacoes",
+      "title": "Ações imediatas para reverter o cenário de evasão",
+      "summary": "Sugestões estratégicas e recomendações baseadas nos dados analisados.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "slide_10_conclusao",
+      "title": "Transformar dados em ações de permanência",
+      "summary": "Conclusão, próximos passos e encerramento da apresentação.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

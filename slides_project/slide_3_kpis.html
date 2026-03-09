@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+        body { margin: 0; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px; /* keep required min-height */
+            background-color: #EDF2F7;
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            overflow: hidden;
+        }
+        .header-block {
+            background-color: #2B6CB0;
+            padding-top: 40px; /* must not shrink */
+            padding-left: 60px;
+            padding-right: 60px;
+            min-height: 120px;
+        }
+        h2 {
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .accent-bar {
+            width: 120px;
+            height: 8px;
+            background-color: #E53E3E;
+            margin-top: 12px;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding-top: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .kpi-card {
+            background-color: #FFFFFF;
+            padding-top: 20px; /* shrink inner padding */
+            padding-left: 20px;
+            padding-right: 20px;
+            min-height: 160px; /* reduced from 200 -> saves vertical space */
+            text-align: center;
+            border-top: 8px solid #2D3748;
+        }
+        .kpi-value {
+            font-size: 80px;
+            font-weight: 900;
+            color: #2B6CB0;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .kpi-label {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #2D3748;
+        }
+        .main-visual {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            padding-top: 30px; /* slightly reduced */
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .chart-container {
+            background-color: #FFFFFF;
+            padding-top: 20px; /* reduced */
+            padding-left: 30px;
+            padding-right: 30px;
+            min-height: 220px; /* reduced from 280 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .insight-box {
+            background-color: #2D3748;
+            color: #FFFFFF;
+            padding-top: 20px; /* reduced */
+            padding-left: 40px;
+            padding-right: 40px;
+            min-height: 220px; /* reduced from 280 */
+        }
+        .insight-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: #E53E3E;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .insight-text {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>Baixa taxa de retenção inicial exige intervenção estratégica</h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">126</div>
+                <div class="kpi-label">Total de Solicitações</div>
+            </div>
+            <div class="kpi-card" style="border-top-color: #E53E3E;">
+                <div class="kpi-value" style="color: #E53E3E;">109</div>
+                <div class="kpi-label">Desistências</div>
+            </div>
+            <div class="kpi-card" style="border-top-color: #2B6CB0;">
+                <div class="kpi-value">17</div>
+                <div class="kpi-label">Alunos Retidos</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">76</div>
+                <div class="kpi-label">Em Processo</div>
+            </div>
+        </div>
+        <div class="main-visual">
+            <div class="chart-container">
+                <div style="height: 160px; width: 160px;">
+                    <canvas id="retentionChart"></canvas>
+                </div>
+                <div class="kpi-label" style="margin-top: 12px;">Taxa de Retenção: 13,5%</div>
+            </div>
+            <div class="insight-box">
+                <div class="insight-title">Conclusão Crítica</div>
+                <div class="insight-text">
+                    A maioria das solicitações resulta em perda definitiva de matrícula.
+                    <br><br>
+                    Os <span style="color: #E53E3E; font-weight: 900;">76 casos "Em Processo"</span> representam a nossa última janela de oportunidade para reverter o cenário deste semestre.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('retentionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Desistência', 'Retenção'],
+                datasets: [{
+                    data: [86.5, 13.5],
+                    backgroundColor: ['#E53E3E', '#2B6CB0'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                cutout: '70%'
+            }
+        });
+    </script>
+</body>
+</html>

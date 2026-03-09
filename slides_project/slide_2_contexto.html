@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: #EDF2F7;
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            overflow: hidden;
+        }
+        .header-block {
+            background-color: #2D3748;
+            padding-top: 60px; /* KEEP upper padding for title */
+            padding-left: 40px;
+            padding-right: 40px;
+            min-height: 180px;
+        }
+        .accent-bar {
+            width: 120px;
+            height: 8px;
+            background-color: #E53E3E;
+            margin-top: 12px;
+        }
+        h2 {
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+            max-width: 1000px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            padding-top: 48px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .info-block {
+            background-color: #FFFFFF;
+            padding-top: 28px;
+            padding-left: 28px;
+            padding-right: 28px;
+            min-height: 320px;
+            border-top: 8px solid #2B6CB0;
+        }
+        .block-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: #2B6CB0;
+            margin-top: 0;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+        .list-item {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .list-item::before {
+            content: "▪";
+            color: #E53E3E;
+            margin-right: 12px;
+            font-size: 24px;
+            line-height: 1;
+        }
+        .highlight-text {
+            font-weight: 700;
+            color: #2B6CB0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-block">
+            <h2>Monitoramento contínuo é essencial para a sustentabilidade institucional</h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="content-grid">
+            <div class="info-block">
+                <div class="block-title">Contexto e Escopo</div>
+                <div class="list-item">Análise das <span class="highlight-text">126 solicitações</span> de desistência registradas no início do semestre 26.1.</div>
+                <div class="list-item">Abrangência total: <span class="highlight-text">Todos os campi</span> e modalidades (Presencial e EAD).</div>
+                <div class="list-item">Foco nos "Demais Cursos" para identificar padrões de comportamento discente.</div>
+            </div>
+            <div class="info-block" style="border-top-color: #E53E3E;">
+                <div class="block-title" style="color: #E53E3E;">Objetivos Estratégicos</div>
+                <div class="list-item">Identificar os principais <span class="highlight-text">"gatilhos" de saída</span> para intervenção imediata.</div>
+                <div class="list-item">Implementar o <span class="highlight-text">Dashboard Interativo</span> para exploração intuitiva dos dados.</div>
+                <div class="list-item">Compreender melhor as tendências para subsidiar a tomada de decisão da diretoria.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
